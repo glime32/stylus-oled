@@ -1,48 +1,50 @@
-# stylus-oled
+<p align="center"><img src="docs/banner-stylus-oled.png" alt="stylus-oled" width="100%"></p>
 
-Mon thème noir OLED + violet pour à peu près tous les sites que j'utilise, et quelques userscripts qui vont avec. Tout se met à jour tout seul depuis ce dépôt.
+<p align="center"><img src="https://img.shields.io/badge/works%20with-Stylus%20·%20Violentmonkey-610089?style=flat-square" alt="works with"> <img src="https://img.shields.io/badge/sites-60+-000000?style=flat-square" alt="sites"> <img src="https://img.shields.io/badge/license-MIT-610089?style=flat-square" alt="license"></p>
 
-Palette : fond `#000000` (pixels éteints sur un écran OLED), violet `#610089`, accent `#c8a2ff`, rouge `#ff3b3b` pour le survol et ce qui est « dangereux ».
+<p align="center"><a href="README.fr.md">🇫🇷 Version française</a></p>
 
-## Contenu
+**My OLED black + purple theme for pretty much every site I use**, plus a few userscripts. Everything updates itself from this repo.
 
-| Fichier | Extension | Installer |
+Palette: `#000000` background (pixels fully off on OLED screens), purple `#610089`, accent `#c8a2ff`, red `#ff3b3b` for hover and "danger".
+
+<table>
+<tr><td><img src="docs/duckduckgo.jpg" alt="DuckDuckGo"></td><td><img src="docs/github.jpg" alt="GitHub"></td></tr>
+<tr><td align="center"><sub>DuckDuckGo</sub></td><td align="center"><sub>GitHub</sub></td></tr>
+<tr><td><img src="docs/wikipedia.jpg" alt="Wikipedia"></td><td><img src="docs/archwiki.jpg" alt="ArchWiki"></td></tr>
+<tr><td align="center"><sub>Wikipédia</sub></td><td align="center"><sub>ArchWiki</sub></td></tr>
+</table>
+
+## Install
+
+| File | For | Install |
 |---|---|---|
-| `oled-violet.user.css` | [Stylus](https://github.com/openstyles/stylus) | [installer](https://raw.githubusercontent.com/glime32/stylus-oled/main/oled-violet.user.css) |
-| `youtube-vo.user.js` | Violentmonkey / Tampermonkey | [installer](https://raw.githubusercontent.com/glime32/stylus-oled/main/youtube-vo.user.js) |
-| `google-messages-recherche.user.js` | Violentmonkey / Tampermonkey | [installer](https://raw.githubusercontent.com/glime32/stylus-oled/main/google-messages-recherche.user.js) |
+| `oled-violet.user.css` | [Stylus](https://github.com/openstyles/stylus) | [**install**](https://raw.githubusercontent.com/glime32/stylus-oled/main/oled-violet.user.css) |
+| `youtube-vo.user.js` | Violentmonkey / Tampermonkey | [**install**](https://raw.githubusercontent.com/glime32/stylus-oled/main/youtube-vo.user.js) |
+| `google-messages-recherche.user.js` | Violentmonkey / Tampermonkey | [**install**](https://raw.githubusercontent.com/glime32/stylus-oled/main/google-messages-recherche.user.js) |
 
-Un clic sur « installer » ouvre directement la page d'installation de l'extension. Les fichiers ont un `@updateURL` qui pointe ici, donc chaque modification poussée sur `main` arrive toute seule dans le navigateur.
+One click opens the extension's install page. Each file has an `@updateURL` pointing here.
 
 ## oled-violet.user.css
 
-Un seul style qui contient un bloc `@-moz-document` par site, il s'applique tout seul au bon domaine. Une partie des sites couverts :
+One style with an `@-moz-document` block per site, applied automatically to the right domain. Some of the sites covered:
 
-- **Google** : YouTube, Gmail, Gemini, comptes Google
-- **Recherche / savoir** : DuckDuckGo, Wikipédia et les autres wikis Wikimedia, ArchWiki, wiki CachyOS, Stack Exchange, WolframAlpha, docs Python, MDN, Minecraft Wiki, Fandom
-- **Fac** : Moodle, CAS et ENT de l'Université de Montpellier
-- **Réseaux / messageries** : Discord, WhatsApp Web, Instagram, Snapchat, TikTok, Reddit, LinkedIn
-- **Divers** : GitHub, Twitch, Spotify, SoundCloud, Steam, ProtonDB, Chess.com, Modrinth, Desmos, GeoGebra, Zoom, PayPal, Roblox, MangaDex, Scribd, Amazon, AliExpress, claude.ai...
+- **Google**: YouTube, Gmail, Gemini, Google accounts
+- **Search / knowledge**: DuckDuckGo, Wikipedia and other Wikimedia wikis, ArchWiki, CachyOS wiki, Stack Exchange, WolframAlpha, Python docs, MDN, Minecraft Wiki, Fandom
+- **Social / messaging**: Discord, WhatsApp Web, Instagram, Snapchat, TikTok, Reddit, LinkedIn
+- **Other**: GitHub, Twitch, Spotify, SoundCloud, Steam, ProtonDB, Chess.com, Modrinth, Desmos, GeoGebra, Zoom, PayPal, MangaDex, Scribd, Amazon, AliExpress, claude.ai, Université de Montpellier (Moodle, CAS, ENT)…
 
-Quelques règles que je garde partout :
-
-- les bordures sur les éléments arrondis font **2 px avec `background-clip: padding-box`** (en 1 px, les coins arrondis paraissent plus fins que le reste) ;
-- les liens Aide / Confidentialité / Conditions et les pieds de page inutiles sont cachés ;
-- les messages non lus (Gmail, Discord, WhatsApp, Instagram) ressortent en violet avec une barre à gauche ;
-- les sites sans mode sombre (Amazon, AliExpress, GeoGebra) passent par une inversion de couleurs qui épargne les images.
-
-Fait et testé sur [Helium](https://github.com/imputnet/helium) (Chromium) sous CachyOS / KDE Plasma. Doit marcher sur n'importe quel navigateur avec Stylus.
+Rules used everywhere: rounded borders are always **2 px with `background-clip: padding-box`** (1 px borders look thinner in the corners); Help / Privacy / Terms links and useless footers are hidden; unread messages stand out in purple; sites without dark mode use a color inversion that spares images.
 
 ## youtube-vo.user.js
 
-Force la piste audio **originale** (pas le doublage automatique de YouTube) et les sous-titres **dans la langue de la vidéo** (pas la traduction automatique). Le script n'agit qu'au moment où YouTube charge une piste ou des sous-titres, il n'y a pas de boucle qui tourne en fond.
-
-Contrepartie : la traduction automatique des sous-titres ne marche plus du tout.
+Forces the **original audio track** (no auto-dub) and **subtitles in the video's language** (no auto-translate). It only acts when YouTube loads a track or subtitles — no background loop.
 
 ## google-messages-recherche.user.js
 
-Ajoute une barre de recherche dans [Google Messages Web](https://messages.google.com/web), comme dans l'appli Android : filtre les conversations par nom ou par dernier message.
+Adds a search bar to [Google Messages for web](https://messages.google.com/web), like the Android app: filters conversations by name or last message.
 
-## Voir aussi
+## See also
 
-- [nouvel-onglet-oled](https://github.com/glime32/nouvel-onglet-oled) : la page Nouvel onglet assortie
+- [nouvel-onglet-oled](https://github.com/glime32/nouvel-onglet-oled) — matching New Tab page
+- [soundcloud-mobile](https://github.com/glime32/soundcloud-mobile) — SoundCloud as a mobile app
