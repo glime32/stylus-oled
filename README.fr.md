@@ -1,12 +1,14 @@
 <p align="center"><img src="docs/banner-stylus-oled.png" alt="stylus-oled" width="100%"></p>
 
-<p align="center"><img src="https://img.shields.io/badge/works%20with-Stylus%20·%20Violentmonkey-610089?style=flat-square" alt="works with"> <img src="https://img.shields.io/badge/sites-60+-000000?style=flat-square" alt="sites"> <img src="https://img.shields.io/badge/license-MIT-610089?style=flat-square" alt="license"></p>
+<p align="center"><img src="https://img.shields.io/badge/works%20with-Stylus%20·%20Violentmonkey-610089?style=flat-square" alt="works with"> <img src="https://img.shields.io/badge/sites-400+-000000?style=flat-square" alt="sites"> <img src="https://img.shields.io/badge/license-MIT-610089?style=flat-square" alt="license"></p>
 
 <p align="center"><a href="README.md">🇬🇧 English version</a></p>
 
 Mon thème noir OLED + violet pour à peu près tous les sites que j'utilise, et quelques userscripts qui vont avec. Tout se met à jour tout seul depuis ce dépôt.
 
-Palette : fond `#000000` (pixels éteints sur un écran OLED), un seul violet `#610089` pour les boutons, les bordures 2 px et ce qui est mis en avant (ses versions foncées `#2a003b` / `#14001e` pour les non lus, la sélection et le survol), texte et icônes blancs, liens soulignés en `#610089`, rouge `#ff3b3b` pour le survol et ce qui est « dangereux ».
+Palette : fond `#000000` (pixels éteints sur un écran OLED), un seul violet `#610089` pour les boutons, les bordures 2 px et ce qui est mis en avant (ses versions foncées `#2a003b` / `#14001e` pour les non lus, la sélection et le survol, `#0a0010` pour les menus, champs et blocs de code), texte et icônes blancs, liens soulignés en `#610089`, rouge `#ff3b3b` pour le survol, le focus et ce qui est « dangereux ».
+
+Ces couleurs sont des variables Stylus : on les change toutes d'un coup dans Stylus → *Configurer* sur le style.
 
 <table>
 <tr><td><img src="docs/duckduckgo.jpg" alt="DuckDuckGo"></td><td><img src="docs/github.jpg" alt="GitHub"></td></tr>
@@ -43,7 +45,8 @@ Quelques règles que je garde partout :
 - les bordures sur les éléments arrondis font **2 px avec `background-clip: padding-box`** (en 1 px, les coins arrondis paraissent plus fins que le reste) ;
 - les liens Aide / Confidentialité / Conditions et les pieds de page inutiles sont cachés ;
 - les messages non lus (Gmail, Discord, WhatsApp, Instagram) ressortent en violet avec une barre à gauche ;
-- les sites sans mode sombre ont un vrai thème sombre plutôt qu'une inversion de couleurs (seuls les graphiques de Desmos et GeoGebra restent inversés).
+- les sites sans mode sombre ont un vrai thème sombre plutôt qu'une inversion de couleurs. L'inversion reste seulement là où rien d'autre ne marche : les graphiques de Desmos et GeoGebra, le corps des mails dans Gmail (leur HTML est trop varié), deux widgets fermés (calendrier Zoom, PayPal) et, seulement si tu les passes en mode clair, les docs NumPy / Matplotlib / pandas / SciPy, les sites gouv.fr et Canva ;
+- Wikipédia, GitHub, GitLab et MDN : le thème habille leur propre mode sombre, donc mets-les en *Sombre* (ou *Auto* avec le système en sombre).
 
 Fait et testé sur [Helium](https://github.com/imputnet/helium) (Chromium) sous CachyOS / KDE Plasma. Doit marcher sur n'importe quel navigateur avec Stylus.
 
@@ -68,7 +71,20 @@ Stylus ne peut pas toucher aux pages `chrome-extension://`, donc le lecteur PDF 
 curl -fsSL https://raw.githubusercontent.com/glime32/stylus-oled/main/pdfjs/install.sh | bash
 ```
 
-Le script trouve le dossier du lecteur (`~/pdfjs-custom` par défaut, ou `PDFJS_DIR=...`), ajoute le CSS et un timer systemd utilisateur qui le met à jour toutes les heures. Recharge ensuite les onglets PDF.
+Le script trouve le dossier du lecteur (`~/pdfjs-custom` par défaut, ou `PDFJS_DIR=...`), ajoute le CSS et une mise à jour toutes les heures (timer systemd utilisateur, ou cron s'il n'y a pas systemd). Recharge ensuite les onglets PDF.
+
+## Modifier le thème
+
+- un bloc par site, qui commence par `/*@@ Nom du site @@*/` ;
+- le bloc `/*@@ modèle générique … @@*/` sert à environ 240 sites qui n'ont pas de mode sombre à eux : une retouche faite là vaut pour tous ;
+- les deux blocs `/*@@ filet anti-blanc … @@*/`, à la fin, rattrapent le blanc que les blocs oublient (fonds blancs écrits dans la page, bulles, fenêtres) : un pour tous les sites thémés, un pour ceux dont le bloc inverse la page en mode clair (couleurs écrites avant l'inversion) ; un nouveau site va dans l'un des deux ;
+- les couleurs s'écrivent `var(--ov-violet)`, `var(--ov-rouge)`… (liste dans l'en-tête du fichier) ;
+- `outils/sites-manquants.py` liste les sites de ton historique Helium pas encore dans le thème (`curl -fsSL https://raw.githubusercontent.com/glime32/stylus-oled/main/outils/sites-manquants.py | python3`), sans les domaines mis dans `~/.config/stylus-oled/ignorer.txt` (un par ligne) ;
+- Stylus ne prend une mise à jour que si `@version` augmente : lance une fois `git config core.hooksPath .githooks` dans ton clone, et chaque commit qui touche le CSS monte la version tout seul.
+
+## Licence
+
+MIT, voir [LICENSE](LICENSE).
 
 ## Voir aussi
 
