@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           OLED violet (auto)
 @namespace      glime32.oled-violet
-@version        1.0.196
+@version        1.0.197
 @description    Tous les thèmes OLED noir #000 + violet #610089, mis à jour tout seuls
 @author         glime32
 @updateURL      https://raw.githubusercontent.com/glime32/stylus-oled/main/oled-violet.user.css
@@ -778,7 +778,9 @@ header form[role="search"],
 form[role="search"] {
   background-color: #000000 !important;
   border: 2px solid #610089 !important;
-  border-radius: 999px !important;
+  border-radius: 24px !important; /* 999px faisait un ovale quand les propositions s'ouvrent */
+  background-clip: padding-box !important;
+  overflow: hidden !important;
   box-shadow: none !important;
 }
 form[role="search"]:focus-within {
