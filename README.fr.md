@@ -78,6 +78,7 @@ Le script trouve le dossier du lecteur (`~/pdfjs-custom` par défaut, ou `PDFJS_
 - un bloc par site, qui commence par `/*@@ Nom du site @@*/` ;
 - le bloc `/*@@ modèle générique … @@*/` sert à environ 120 sites qui n'ont pas de mode sombre à eux : une retouche faite là vaut pour tous ;
 - les couleurs s'écrivent `var(--ov-violet)`, `var(--ov-rouge)`… (liste dans l'en-tête du fichier) ;
+- `outils/sites-manquants.py` liste les sites de ton historique Helium pas encore dans le thème (`curl -fsSL https://raw.githubusercontent.com/glime32/stylus-oled/main/outils/sites-manquants.py | python3`) ;
 - Stylus ne prend une mise à jour que si `@version` augmente : lance une fois `git config core.hooksPath .githooks` dans ton clone, et chaque commit qui touche le CSS monte la version tout seul.
 
 ## Licence
