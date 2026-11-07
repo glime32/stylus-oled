@@ -1,93 +1,134 @@
-/* oled-pdfjs.css — calque OLED violet pour le lecteur PDF.js (extension « PDF Viewer » non empaquetée).
+/* oled-pdfjs.css — calque OLED pour le lecteur PDF.js (extension « PDF Viewer » non empaquetée).
+   Même style que le reste du thème : noir #000, un seul violet #610089 (bordures 2px, boutons actifs),
+   texte et icônes blancs, rouge #ff3b3b au survol.
    Chargé juste après viewer.css, mis à jour tout seul depuis github.com/glime32/stylus-oled (pdfjs/install.sh). */
 
-/* ---------- Icônes, textes et champs lisibles ---------- */
 :root,
 :root:where(:not(.is-light)),
 #outerContainer {
   --toolbar-icon-opacity: 1 !important;
   --doorhanger-icon-opacity: 1 !important;
-  --toolbar-icon-bg-color: #c8a2ff !important;
+  --toolbar-icon-bg-color: #ffffff !important;
   --toolbar-icon-hover-bg-color: #ff3b3b !important;
+  --toolbar-bg-color: #000000 !important;
   --button-hover-color: #14001e !important;
   --button-hover-text-color: #ffffff !important;
   --toggled-btn-color: #ffffff !important;
   --toggled-btn-text-color: #ffffff !important;
-  --toggled-btn-bg-color: #2a003b !important;
+  --toggled-btn-bg-color: #610089 !important;
   --toggled-hover-active-btn-color: #610089 !important;
-  --main-color: #e8dcff !important;
+  --main-color: #ffffff !important;
   --field-color: #ffffff !important;
-  --field-bg-color: #0a0010 !important;
+  --field-bg-color: #000000 !important;
   --field-border-color: #610089 !important;
-  --dropdown-btn-bg-color: #0a0010 !important;
+  --dropdown-btn-bg-color: #000000 !important;
+  --dropdown-btn-border: 2px solid #610089 !important;
   --doorhanger-bg-color: #0a0010 !important;
   --doorhanger-border-color: #610089 !important;
   --doorhanger-hover-color: #ffffff !important;
   --doorhanger-separator-color: #2a003b !important;
   --separator-color: #2a003b !important;
-  --progressBar-color: #c8a2ff !important;
+  --progressBar-color: #610089 !important;
   --progressBar-bg-color: #14001e !important;
   --progressBar-blend-color: #610089 !important;
 }
 
-/* icônes (masques) : lilas, rouge au survol, blanc quand l'outil est actif */
-#outerContainer .toolbarButton::before,
-#outerContainer .dropdownToolbarButton::after {
-  background-color: #c8a2ff !important;
-  opacity: 1 !important;
+/* ---------- barre du haut ---------- */
+#outerContainer #toolbarContainer {
+  background-color: #000000 !important;
+  border-bottom: 2px solid #610089 !important;
+  box-shadow: none !important;
 }
-#outerContainer .toolbarButton:is(:hover, :focus-visible)::before,
-#outerContainer .dropdownToolbarButton:is(:hover, :focus-visible, :active)::after {
-  background-color: #ff3b3b !important;
-}
-#outerContainer .toolbarButton.toggled::before {
-  background-color: #ffffff !important;
-}
-#outerContainer .toolbarButton:is([disabled], [disabled="disabled"])::before {
-  opacity: 0.45 !important;
-}
-#outerContainer :is(.toolbarLabel, #numPages) {
-  color: #e8dcff !important;
-}
-#outerContainer .toolbarField {
-  border: 2px solid #610089 !important;
-  border-radius: 8px !important;
-  background-clip: padding-box !important;
-}
-#outerContainer .toolbarField:focus {
-  border-color: #c8a2ff !important;
+#outerContainer #toolbarViewer { background: transparent !important; }
+#outerContainer :is(.splitToolbarButtonSeparator, .verticalToolbarSeparator) {
+  border-color: #2a003b !important;
+  background-color: #2a003b !important;
 }
 
-/* ---------- Barre du haut : cachée, s'ouvre dès que la souris approche du haut ---------- */
+/* boutons-icônes : ronds, icône blanche, rouge au survol, rond violet quand l'outil est actif */
+#outerContainer .toolbarButton {
+  border-radius: 999px !important;
+  background-color: transparent !important;
+  outline: none !important;
+}
+#outerContainer .toolbarButton::before,
+#outerContainer .dropdownToolbarButton::after {
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+}
+#outerContainer .toolbarButton:is(:hover, :focus-visible) { background-color: #14001e !important; }
+#outerContainer .toolbarButton:is(:hover, :focus-visible)::before,
+#outerContainer .dropdownToolbarButton:is(:hover, :focus-within)::after { background-color: #ff3b3b !important; }
+#outerContainer .toolbarButton.toggled,
+#outerContainer .toolbarButton[aria-expanded="true"],
+#outerContainer .toolbarButton[aria-pressed="true"] { background-color: #610089 !important; }
+#outerContainer .toolbarButton:is(.toggled, [aria-expanded="true"], [aria-pressed="true"])::before { background-color: #ffffff !important; }
+#outerContainer .toolbarButton:is([disabled], [disabled="disabled"])::before { opacity: 0.35 !important; }
+
+/* numéro de page et zoom : même pastille noire, bord violet 2px, rouge au survol */
+#outerContainer .toolbarField,
+#outerContainer .dropdownToolbarButton {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #610089 !important;
+  border-radius: 999px !important;
+  background-clip: padding-box !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+#outerContainer .toolbarField { text-align: center !important; }
+#outerContainer .dropdownToolbarButton > select {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  outline: none !important;
+}
+#outerContainer .dropdownToolbarButton > select > option { background-color: #0a0010 !important; color: #ffffff !important; }
+#outerContainer :is(.toolbarField, .dropdownToolbarButton):hover,
+#outerContainer :is(.toolbarField:focus, .dropdownToolbarButton:focus-within) { border-color: #ff3b3b !important; }
+#outerContainer :is(.toolbarLabel, #numPages) { color: #b0b0b0 !important; }
+
+/* menus (», recherche, outils d'annotation) : fond violet très foncé, anneau violet par-dessus le contenu */
+#outerContainer :is(.doorHanger, .doorHangerRight, .editorParamsToolbar, #secondaryToolbar, #findbar, .dropdownToolbarButton menu, [role="menu"]) {
+  background-color: #0a0010 !important;
+  border: 0 !important;
+  outline: 2px solid #610089 !important;
+  outline-offset: -2px !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+}
+#outerContainer :is(.doorHanger, .doorHangerRight, .editorParamsToolbar)::before,
+#outerContainer :is(.doorHanger, .doorHangerRight, .editorParamsToolbar)::after { display: none !important; } /* petites flèches */
+#outerContainer #secondaryToolbar .toolbarButton { border-radius: 10px !important; }
+
+/* ---------- barre cachée : s'ouvre dès que la souris approche du haut ---------- */
 #outerContainer #toolbarContainer {
   position: fixed !important;
   inset: 0 0 auto 0 !important;
   z-index: 9999 !important;
-  background-color: #000000 !important;
-  box-shadow: none !important;
   transform: translateY(-100%) !important;
   transition: transform 0.18s ease 0.35s !important; /* se cache 0,35 s après la sortie */
 }
-
-/* zone de survol invisible de 48 px sous la barre + fine ligne violette bien visible */
+/* zone de survol invisible de 48 px + fine ligne violette qui montre où est la barre */
 #outerContainer #toolbarContainer::after {
   content: "" !important;
   position: absolute !important;
   inset: 100% 0 auto 0 !important;
   height: 48px !important;
   pointer-events: auto !important;
-  background: linear-gradient(90deg, transparent, #610089 22%, #c8a2ff 50%, #610089 78%, transparent) top / 100% 3px no-repeat !important;
+  background: linear-gradient(#610089, #610089) top / 100% 2px no-repeat !important;
 }
-
-/* barre ouverte : au survol, au clavier, ou tant qu'un menu / la recherche / un outil est ouvert */
 #outerContainer #toolbarContainer:is(:hover, :focus-within),
 #outerContainer #toolbarContainer:has([aria-expanded="true"], .doorHanger:not(.hidden), .doorHangerRight:not(.hidden)),
 #outerContainer:has(#secondaryToolbar:not(.hidden), #findbar:not(.hidden), .editorParamsToolbar:not(.hidden)) #toolbarContainer {
   transform: none !important;
   transition-delay: 0s !important;
 }
-/* barre ouverte : la zone sous la barre rétrécit (moins de clics bloqués sur la page) */
-#outerContainer #toolbarContainer:is(:hover, :focus-within)::after {
+/* barre ouverte : la bordure du bas suffit, la zone rétrécit (moins de clics bloqués sur la page) */
+#outerContainer #toolbarContainer:is(:hover, :focus-within)::after,
+#outerContainer #toolbarContainer:has([aria-expanded="true"], .doorHanger:not(.hidden), .doorHangerRight:not(.hidden))::after,
+#outerContainer:has(#secondaryToolbar:not(.hidden), #findbar:not(.hidden), .editorParamsToolbar:not(.hidden)) #toolbarContainer::after {
   height: 24px !important;
-  background-size: 100% 2px !important;
+  background: none !important;
 }

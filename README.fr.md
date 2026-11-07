@@ -6,7 +6,7 @@
 
 Mon thème noir OLED + violet pour à peu près tous les sites que j'utilise, et quelques userscripts qui vont avec. Tout se met à jour tout seul depuis ce dépôt.
 
-Palette : fond `#000000` (pixels éteints sur un écran OLED), violet `#610089`, accent `#c8a2ff`, rouge `#ff3b3b` pour le survol et ce qui est « dangereux ».
+Palette : fond `#000000` (pixels éteints sur un écran OLED), un seul violet `#610089` pour les boutons, les bordures 2 px et ce qui est mis en avant (ses versions foncées `#2a003b` / `#14001e` pour les non lus, la sélection et le survol), texte et icônes blancs, liens soulignés en `#610089`, rouge `#ff3b3b` pour le survol et ce qui est « dangereux ».
 
 <table>
 <tr><td><img src="docs/duckduckgo.jpg" alt="DuckDuckGo"></td><td><img src="docs/github.jpg" alt="GitHub"></td></tr>
@@ -61,7 +61,7 @@ Ajoute une barre de recherche dans [Google Messages Web](https://messages.google
 
 Stylus ne peut pas toucher aux pages `chrome-extension://`, donc le lecteur PDF (copie non empaquetée de l'extension *PDF Viewer*, PDF.js) a son propre calque : `oled-pdfjs.css`, chargé juste après `viewer.css`.
 
-- icônes lilas bien visibles (rouges au survol, blanches quand un outil est actif) ;
+- le même style que le reste du thème : icônes blanches (rouges au survol), outil actif dans un rond `#610089`, numéro de page et zoom dans des pastilles noires au bord `#610089` 2 px, menus aux coins arrondis ;
 - la barre du haut se cache et descend dès que la souris approche du haut de la page (zone de 48 px), avec une fine ligne violette qui montre où elle est ; elle reste ouverte tant qu'un menu, la recherche ou un outil est ouvert.
 
 ```bash

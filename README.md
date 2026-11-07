@@ -6,7 +6,7 @@
 
 **My OLED black + purple theme for pretty much every site I use**, plus a few userscripts. Everything updates itself from this repo.
 
-Palette: `#000000` background (pixels fully off on OLED screens), purple `#610089`, accent `#c8a2ff`, red `#ff3b3b` for hover and "danger".
+Palette: `#000000` background (pixels fully off on OLED screens), one single purple `#610089` for buttons, 2 px borders and highlights (darker shades `#2a003b` / `#14001e` for unread, selected and hover backgrounds), white text and icons, links underlined in `#610089`, red `#ff3b3b` for hover and "danger".
 
 <table>
 <tr><td><img src="docs/duckduckgo.jpg" alt="DuckDuckGo"></td><td><img src="docs/github.jpg" alt="GitHub"></td></tr>
@@ -51,7 +51,7 @@ Adds a search bar to [Google Messages for web](https://messages.google.com/web),
 
 Stylus can't touch `chrome-extension://` pages, so the PDF viewer (an unpacked copy of the *PDF Viewer* extension, PDF.js) gets its own layer: `oled-pdfjs.css`, loaded right after `viewer.css`.
 
-- lilac icons that you can actually see (red on hover, white when a tool is active);
+- the same look as the rest of the theme: white icons (red on hover), active tool in a `#610089` circle, page number and zoom in black pills with a 2 px `#610089` border, menus with rounded corners;
 - the top bar hides itself and slides down as soon as the mouse gets near the top of the page (48 px zone), with a thin purple line showing where it is; it stays open while a menu, the search or a tool is open.
 
 ```bash
