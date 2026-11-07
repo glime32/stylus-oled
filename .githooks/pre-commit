@@ -5,10 +5,21 @@
 set -eu   # (pas de pipefail : grep qui s'arrête tôt ferait échouer le tube)
 f=oled-violet.user.css
 if git diff --cached --quiet -- "$f"; then exit 0; fi              # fichier pas touché
+if ! git cat-file -e ":$f" 2>/dev/null; then exit 0; fi           # fichier supprimé ou renommé
 if git diff --cached -U0 -- "$f" | grep '^+@version' >/dev/null; then exit 0; fi   # version déjà changée à la main
-v=$(sed -n 's/^@version[[:space:]]*//p' "$f" | head -n1)
-n="${v%.*}.$(( ${v##*.} + 1 ))"
+# la version lue et changée est celle de ce qui part dans le commit (l'index), pas celle du disque
+v=$(git show ":$f" | sed -n 's/^@version[[:space:]]*//p' | head -n1 | tr -d '\r')
+case "$v" in
+  ''|*[!0-9.]*|.*|*.|*..*) echo "@version « $v » pas de la forme 1.2.3 : laissée telle quelle" >&2; exit 0 ;;
+esac
+case "$v" in *.*) ;; *) echo "@version « $v » sans point : laissée telle quelle" >&2; exit 0 ;; esac
+n="${v%.*}.$(( 10#${v##*.} + 1 ))"
 ve=$(printf '%s' "$v" | sed 's/\./\\./g')
-sed -i "s/^\(@version[[:space:]]*\)$ve\$/\1$n/" "$f"
-git add "$f"
+change="s/^\(@version[[:space:]]*\)$ve\(\r\{0,1\}\)\$/\1$n\2/"
+# index : seulement la ligne @version, sans ajouter les morceaux pas encore « git add »
+mode=$(git ls-files -s -- "$f" | cut -d' ' -f1)
+sha=$(git show ":$f" | sed "$change" | git hash-object -w --no-filters --stdin)
+git update-index --cacheinfo "$mode,$sha,$f"
+# disque : même changement, pour que la copie de travail suive
+if [ -f "$f" ]; then sed -i "$change" "$f"; fi
 echo "@version $v -> $n"

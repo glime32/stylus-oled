@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Google Messages – barre de recherche
 // @namespace    glime32
-// @version      1.1
+// @version      1.2
 // @description  Ajoute une barre de recherche au-dessus de la liste des conversations (filtre par nom ou dernier message). Ctrl+K pour y aller. Couleurs : thème Stylus oled-violet.
 // @match        https://messages.google.com/web/*
 // @run-at       document-idle
@@ -50,6 +50,7 @@
       }
     });
     fab.after(box);
+    filtrer();   // nouvelle barre vide : réaffiche ce qu'une ancienne barre aurait caché
   }
 
   // Quand la page change, un seul passage par image affichée (pas de boucle en fond)

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Theme OLED violet pour le lecteur PDF.js (copie non empaquetee de l extension "PDF Viewer").
-# Ajoute oled-pdfjs.css juste apres viewer.css + mise a jour auto (timer systemd).
+# Ajoute oled-pdfjs.css juste apres viewer.css + mise a jour auto (timer systemd, sinon cron).
 # Usage : curl -fsSL https://raw.githubusercontent.com/glime32/stylus-oled/main/pdfjs/install.sh | bash
 set -euo pipefail
 
@@ -59,7 +59,7 @@ Description=Mise a jour du theme OLED du lecteur PDF.js
 
 [Service]
 Type=oneshot
-ExecStart=$MAJ
+ExecStart="$MAJ"
 EOF
 
 cat > "$UNIT/oled-pdfjs-maj.timer" <<EOF
@@ -79,7 +79,7 @@ systemctl --user daemon-reload
 systemctl --user enable --now oled-pdfjs-maj.timer
 AUTO="active (timer systemd, toutes les heures)"
 elif command -v crontab >/dev/null 2>&1; then
-  { crontab -l 2>/dev/null | grep -v -F "$MAJ" || true; echo "0 * * * * $MAJ >/dev/null 2>&1"; } | crontab -
+  { crontab -l 2>/dev/null | grep -v -F "$MAJ" || true; echo "0 * * * * \"$MAJ\" >/dev/null 2>&1"; } | crontab -
   AUTO="active (cron, toutes les heures)"
 else
   AUTO="impossible ici (ni systemd ni cron) : lance $MAJ pour mettre a jour"
