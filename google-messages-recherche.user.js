@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Google Messages – barre de recherche
 // @namespace    glime32
-// @version      1.0
-// @description  Ajoute une barre de recherche au-dessus de la liste des conversations (filtre par nom ou dernier message). Ctrl+K pour y aller.
+// @version      1.1
+// @description  Ajoute une barre de recherche au-dessus de la liste des conversations (filtre par nom ou dernier message). Ctrl+K pour y aller. Couleurs : thème Stylus oled-violet.
 // @match        https://messages.google.com/web/*
 // @run-at       document-idle
 // @grant        none
@@ -13,7 +13,8 @@
 (() => {
   'use strict';
 
-  const norm = (s) => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  // enlève les accents : « é » -> « e »
+  const norm = (s) => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   let champ = null;
 
   function filtrer() {
@@ -29,19 +30,17 @@
     if (!fab) return;
     const box = document.createElement('div');
     box.id = 'gm-recherche';
-    Object.assign(box.style, { padding: '8px 12px 4px' });
+    box.style.padding = '8px 12px 4px';
     champ = document.createElement('input');
     champ.type = 'search';
     champ.placeholder = 'Rechercher une conversation  (Ctrl+K)';
     champ.autocomplete = 'off';
     box.append(champ);
+    // mise en page seulement : les couleurs (et le rouge au focus) viennent du thème Stylus
     Object.assign(champ.style, {
       width: '100%', boxSizing: 'border-box', padding: '10px 16px', fontFamily: '"Google Sans", Roboto, sans-serif', fontSize: '15px',
-      color: '#fff', background: '#0a0010', border: '2px solid #610089', borderRadius: '24px',
-      backgroundClip: 'padding-box', outline: 'none',
+      borderRadius: '24px',
     });
-    champ.addEventListener('focus', () => (champ.style.borderColor = '#c8a2ff'));
-    champ.addEventListener('blur', () => (champ.style.borderColor = '#610089'));
     champ.addEventListener('input', filtrer);
     champ.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') { champ.value = ''; filtrer(); champ.blur(); }
@@ -53,9 +52,13 @@
     fab.after(box);
   }
 
-  // Seulement quand la liste change (pas de boucle en fond)
-  new MutationObserver(() => { installer(); if (champ?.value) filtrer(); })
-    .observe(document.body, { childList: true, subtree: true });
+  // Quand la page change, un seul passage par image affichée (pas de boucle en fond)
+  let prevu = false;
+  new MutationObserver(() => {
+    if (prevu) return;
+    prevu = true;
+    requestAnimationFrame(() => { prevu = false; installer(); if (champ?.value) filtrer(); });
+  }).observe(document.body, { childList: true, subtree: true });
   installer();
 
   document.addEventListener('keydown', (e) => {

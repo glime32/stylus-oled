@@ -3576,6 +3576,11 @@ mw-banner:has(>.banner-container:empty),mw-banner:empty{display:none!important}
 mw-banner{border:0!important;box-shadow:none!important}
 div.input-background{background:none!important}
 mw-nav-drawer-item:has(>button:is([data-e2e-nav-item=HELP],[data-e2e-nav-item=FEEDBACK])),button:is([data-e2e-nav-item=HELP],[data-e2e-nav-item=FEEDBACK]){display:none!important}
+
+/* ---- barre de recherche (userscript google-messages-recherche) ---- */
+#gm-recherche input{color:var(--ov-blanc)!important;background:var(--ov-surface)!important;border:2px solid var(--ov-violet)!important;background-clip:padding-box!important;outline:none!important}
+#gm-recherche input:focus{border-color:var(--ov-rouge)!important}
+#gm-recherche input::placeholder{color:#a6a6a6!important}
 }
 
 /*@@ DevDocs @@*/
