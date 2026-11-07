@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Monte tout seul le dernier chiffre de @version quand oled-violet.user.css change :
+# Stylus ne prend une mise à jour que si la version augmente.
+# À activer une fois par clone :  git config core.hooksPath .githooks
+set -eu   # (pas de pipefail : grep qui s'arrête tôt ferait échouer le tube)
+f=oled-violet.user.css
+if git diff --cached --quiet -- "$f"; then exit 0; fi              # fichier pas touché
+if git diff --cached -U0 -- "$f" | grep '^+@version' >/dev/null; then exit 0; fi   # version déjà changée à la main
+v=$(sed -n 's/^@version[[:space:]]*//p' "$f" | head -n1)
+n="${v%.*}.$(( ${v##*.} + 1 ))"
+ve=$(printf '%s' "$v" | sed 's/\./\\./g')
+sed -i "s/^\(@version[[:space:]]*\)$ve\$/\1$n/" "$f"
+git add "$f"
+echo "@version $v -> $n"

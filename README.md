@@ -1,12 +1,14 @@
 <p align="center"><img src="docs/banner-stylus-oled.png" alt="stylus-oled" width="100%"></p>
 
-<p align="center"><img src="https://img.shields.io/badge/works%20with-Stylus%20·%20Violentmonkey-610089?style=flat-square" alt="works with"> <img src="https://img.shields.io/badge/sites-60+-000000?style=flat-square" alt="sites"> <img src="https://img.shields.io/badge/license-MIT-610089?style=flat-square" alt="license"></p>
+<p align="center"><img src="https://img.shields.io/badge/works%20with-Stylus%20·%20Violentmonkey-610089?style=flat-square" alt="works with"> <img src="https://img.shields.io/badge/sites-250+-000000?style=flat-square" alt="sites"> <img src="https://img.shields.io/badge/license-MIT-610089?style=flat-square" alt="license"></p>
 
 <p align="center"><a href="README.fr.md">🇫🇷 Version française</a></p>
 
 **My OLED black + purple theme for pretty much every site I use**, plus a few userscripts. Everything updates itself from this repo.
 
-Palette: `#000000` background (pixels fully off on OLED screens), one single purple `#610089` for buttons, 2 px borders and highlights (darker shades `#2a003b` / `#14001e` for unread, selected and hover backgrounds), white text and icons, links underlined in `#610089`, red `#ff3b3b` for hover and "danger".
+Palette: `#000000` background (pixels fully off on OLED screens), one single purple `#610089` for buttons, 2 px borders and highlights (darker shades `#2a003b` / `#14001e` for unread, selected and hover backgrounds, `#0a0010` for menus, fields and code blocks), white text and icons, links underlined in `#610089`, red `#ff3b3b` for hover, focus and "danger".
+
+These colours are Stylus variables: change them all at once in Stylus → *Configure* on the style.
 
 <table>
 <tr><td><img src="docs/duckduckgo.jpg" alt="DuckDuckGo"></td><td><img src="docs/github.jpg" alt="GitHub"></td></tr>
@@ -37,7 +39,7 @@ One style with an `@-moz-document` block per site, applied automatically to the 
 - **Social / messaging**: Discord, WhatsApp Web, Instagram, Snapchat, TikTok, Reddit, LinkedIn
 - **Other**: GitHub, Twitch, Spotify, SoundCloud, Steam, ProtonDB, Chess.com, Modrinth, Desmos, GeoGebra, Zoom, PayPal, MangaDex, Scribd, Amazon, AliExpress, claude.ai, Université de Montpellier (Moodle, CAS, ENT)…
 
-Rules used everywhere: rounded borders are always **2 px with `background-clip: padding-box`** (1 px borders look thinner in the corners); Help / Privacy / Terms links and useless footers are hidden; unread messages stand out in purple; sites without a dark mode get a real dark theme instead of a color inversion (only Desmos and GeoGebra graphs are still inverted).
+Rules used everywhere: rounded borders are always **2 px with `background-clip: padding-box`** (1 px borders look thinner in the corners); Help / Privacy / Terms links and useless footers are hidden; unread messages stand out in purple; sites without a dark mode get a real dark theme instead of a colour inversion. Inversion is only kept where nothing else works: Desmos and GeoGebra graphs, the body of emails in Gmail (their HTML is too varied), two closed widgets (Zoom calendar, PayPal) and, only when you switch them to light mode, the NumPy / Matplotlib / pandas / SciPy docs, gouv.fr sites and Canva. Wikipedia, GitHub, GitLab and MDN: the theme dresses their own dark mode, so set them to *Dark* (or *Auto* with a dark system).
 
 ## youtube-vo.user.js
 
@@ -58,7 +60,18 @@ Stylus can't touch `chrome-extension://` pages, so the PDF viewer (an unpacked c
 curl -fsSL https://raw.githubusercontent.com/glime32/stylus-oled/main/pdfjs/install.sh | bash
 ```
 
-The script finds the viewer folder (`~/pdfjs-custom` by default, or `PDFJS_DIR=...`), adds the CSS and a systemd user timer that updates it every hour. Then reload the PDF tabs.
+The script finds the viewer folder (`~/pdfjs-custom` by default, or `PDFJS_DIR=...`), adds the CSS and an hourly update (systemd user timer, or cron when there is no systemd). Then reload the PDF tabs.
+
+## Editing the theme
+
+- one block per site, starting with `/*@@ Site name @@*/`;
+- the `/*@@ modèle générique … @@*/` block is shared by about 120 sites that have no dark mode of their own: one edit there applies to all of them;
+- colours are written `var(--ov-violet)`, `var(--ov-rouge)`… (list in the file header);
+- Stylus only takes an update when `@version` goes up: run `git config core.hooksPath .githooks` once in your clone and every commit that touches the CSS bumps it automatically.
+
+## License
+
+MIT, see [LICENSE](LICENSE).
 
 ## See also
 
