@@ -13,6 +13,8 @@ Palette: `#000000` background (pixels fully off on OLED screens), purple `#61008
 <tr><td align="center"><sub>DuckDuckGo</sub></td><td align="center"><sub>GitHub</sub></td></tr>
 <tr><td><img src="docs/wikipedia.jpg" alt="Wikipedia"></td><td><img src="docs/archwiki.jpg" alt="ArchWiki"></td></tr>
 <tr><td align="center"><sub>Wikipédia</sub></td><td align="center"><sub>ArchWiki</sub></td></tr>
+<tr><td><img src="docs/stackoverflow.jpg" alt="Stack Overflow"></td><td><img src="docs/mdn.jpg" alt="MDN"></td></tr>
+<tr><td align="center"><sub>Stack Overflow</sub></td><td align="center"><sub>MDN</sub></td></tr>
 </table>
 
 ## Install
@@ -22,6 +24,7 @@ Palette: `#000000` background (pixels fully off on OLED screens), purple `#61008
 | `oled-violet.user.css` | [Stylus](https://github.com/openstyles/stylus) | [**install**](https://raw.githubusercontent.com/glime32/stylus-oled/main/oled-violet.user.css) |
 | `youtube-vo.user.js` | Violentmonkey / Tampermonkey | [**install**](https://raw.githubusercontent.com/glime32/stylus-oled/main/youtube-vo.user.js) |
 | `google-messages-recherche.user.js` | Violentmonkey / Tampermonkey | [**install**](https://raw.githubusercontent.com/glime32/stylus-oled/main/google-messages-recherche.user.js) |
+| `pdfjs/oled-pdfjs.css` | PDF.js (*PDF Viewer* extension, unpacked copy) | one command, see [below](#pdfjs--pdf-viewer) |
 
 One click opens the extension's install page. Each file has an `@updateURL` pointing here.
 
@@ -34,7 +37,7 @@ One style with an `@-moz-document` block per site, applied automatically to the 
 - **Social / messaging**: Discord, WhatsApp Web, Instagram, Snapchat, TikTok, Reddit, LinkedIn
 - **Other**: GitHub, Twitch, Spotify, SoundCloud, Steam, ProtonDB, Chess.com, Modrinth, Desmos, GeoGebra, Zoom, PayPal, MangaDex, Scribd, Amazon, AliExpress, claude.ai, Université de Montpellier (Moodle, CAS, ENT)…
 
-Rules used everywhere: rounded borders are always **2 px with `background-clip: padding-box`** (1 px borders look thinner in the corners); Help / Privacy / Terms links and useless footers are hidden; unread messages stand out in purple; sites without dark mode use a color inversion that spares images.
+Rules used everywhere: rounded borders are always **2 px with `background-clip: padding-box`** (1 px borders look thinner in the corners); Help / Privacy / Terms links and useless footers are hidden; unread messages stand out in purple; sites without a dark mode get a real dark theme instead of a color inversion (only Desmos and GeoGebra graphs are still inverted).
 
 ## youtube-vo.user.js
 
@@ -43,6 +46,19 @@ Forces the **original audio track** (no auto-dub) and **subtitles in the video's
 ## google-messages-recherche.user.js
 
 Adds a search bar to [Google Messages for web](https://messages.google.com/web), like the Android app: filters conversations by name or last message.
+
+## pdfjs/ — PDF viewer
+
+Stylus can't touch `chrome-extension://` pages, so the PDF viewer (an unpacked copy of the *PDF Viewer* extension, PDF.js) gets its own layer: `oled-pdfjs.css`, loaded right after `viewer.css`.
+
+- lilac icons that you can actually see (red on hover, white when a tool is active);
+- the top bar hides itself and slides down as soon as the mouse gets near the top of the page (48 px zone), with a thin purple line showing where it is; it stays open while a menu, the search or a tool is open.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/glime32/stylus-oled/main/pdfjs/install.sh | bash
+```
+
+The script finds the viewer folder (`~/pdfjs-custom` by default, or `PDFJS_DIR=...`), adds the CSS and a systemd user timer that updates it every hour. Then reload the PDF tabs.
 
 ## See also
 

@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           OLED violet (auto)
 @namespace      glime32.oled-violet
-@version        1.0.197
+@version        1.0.198
 @description    Tous les thèmes OLED noir #000 + violet #610089, mis à jour tout seuls
 @author         glime32
 @updateURL      https://raw.githubusercontent.com/glime32/stylus-oled/main/oled-violet.user.css
@@ -736,8 +736,8 @@ html body article button[aria-controls^="contextMenu-"][aria-expanded="true"] * 
   --gm3-sys-color-on-surface: #e8e8e8 !important;
   --gm3-sys-color-on-surface-variant: #b0b0b0 !important;
   --gm3-sys-color-on-background: #e8e8e8 !important;
-  --gm3-sys-color-primary: #b45fe0 !important;
-  --gm3-sys-color-on-primary: #ffffff !important;
+  --gm3-sys-color-primary: #c8a2ff !important;
+  --gm3-sys-color-on-primary: #000000 !important;
   --gm3-sys-color-primary-container: #610089 !important;
   --gm3-sys-color-on-primary-container: #ffffff !important;
   --gm3-sys-color-secondary-container: #1a0026 !important;
@@ -974,6 +974,32 @@ a:hover { color: #d28cf5; }
 /* ===== Sélection et barres de défilement ===== */
 ::selection { background: #610089 !important; color: #ffffff !important; }
 * { scrollbar-color: #610089 #000000 !important; }
+
+/* ===== Jetons Material 3 sombres aussi dans les blocs qui les redéfinissent en clair
+   (Configuration rapide, panneau Gemini, carte « Code demandé », barre Google…) ===== */
+:root,html,body,.AlFUWe,.Drce2b,.GNOiAd,.GYfbG,.IU,.Lov59,.PdZyjc,.QHeeze,.Qv2Ltf,.RiZsyf,.RuSUmb,.T-ays,.V9kMTd,.XC4vr,.YP1I1b,.Z3l91d,.Z4Vqcd,.ZdZJp,.Zmxtcf,.a98,.aLF-aPX-JD,.aLF-aPX-QGztLd-K0-n8fv3b,.aLF-aPX-bil-bip,.aXR-Jw,.aqe,.axu-aOh-Jw,.bGV,.bbG,.bbK,.bbR,.bkL,.cSrKee,.dPlipb,.fP5mL,.fp0W3e,.gMjUJ,.gb_1d,.gb_6a,.gb_8a,.gb_9a,.gb_K,.gb_Rd,.gb_cb,.gb_db,.j1S6od,.lBV8Rb,.lOpKR,.ldAxn,.nptvo,.o9kyXe,.q70Nge,.qp,.r4,.rSvt3b,.rcCvbd,.s8Kcyb,.tmGc5,.wGvdHe,.wj7EP,.ws5S4e,.zAYgkb-NhlrFc-M,.znasJc{--gm3-sys-color-background:#000000!important;--gm3-sys-color-background-rgb:0,0,0!important;--gm3-sys-color-error:#ff3b3b!important;--gm3-sys-color-error-rgb:255,59,59!important;--gm3-sys-color-error-container:#2a0008!important;--gm3-sys-color-error-container-rgb:42,0,8!important;--gm3-sys-color-inverse-on-surface:#ffffff!important;--gm3-sys-color-inverse-on-surface-rgb:255,255,255!important;--gm3-sys-color-inverse-primary:#610089!important;--gm3-sys-color-inverse-primary-rgb:97,0,137!important;--gm3-sys-color-inverse-surface:#1a0026!important;--gm3-sys-color-inverse-surface-rgb:26,0,38!important;--gm3-sys-color-on-background:#e8e8e8!important;--gm3-sys-color-on-background-rgb:232,232,232!important;--gm3-sys-color-on-error:#000000!important;--gm3-sys-color-on-error-rgb:0,0,0!important;--gm3-sys-color-on-error-container:#ffd6d6!important;--gm3-sys-color-on-error-container-rgb:255,214,214!important;--gm3-sys-color-on-primary:#000000!important;--gm3-sys-color-on-primary-rgb:0,0,0!important;--gm3-sys-color-on-primary-container:#ffffff!important;--gm3-sys-color-on-primary-container-rgb:255,255,255!important;--gm3-sys-color-on-primary-fixed:#ffffff!important;--gm3-sys-color-on-primary-fixed-rgb:255,255,255!important;--gm3-sys-color-on-primary-fixed-variant:#e8dcff!important;--gm3-sys-color-on-primary-fixed-variant-rgb:232,220,255!important;--gm3-sys-color-on-secondary:#000000!important;--gm3-sys-color-on-secondary-rgb:0,0,0!important;--gm3-sys-color-on-secondary-container:#ff3b3b!important;--gm3-sys-color-on-secondary-container-rgb:255,59,59!important;--gm3-sys-color-on-secondary-fixed:#ffffff!important;--gm3-sys-color-on-secondary-fixed-rgb:255,255,255!important;--gm3-sys-color-on-secondary-fixed-variant:#e8dcff!important;--gm3-sys-color-on-secondary-fixed-variant-rgb:232,220,255!important;--gm3-sys-color-on-surface:#e8e8e8!important;--gm3-sys-color-on-surface-rgb:232,232,232!important;--gm3-sys-color-on-surface-variant:#b0b0b0!important;--gm3-sys-color-on-surface-variant-rgb:176,176,176!important;--gm3-sys-color-on-tertiary:#000000!important;--gm3-sys-color-on-tertiary-rgb:0,0,0!important;--gm3-sys-color-on-tertiary-container:#ffffff!important;--gm3-sys-color-on-tertiary-container-rgb:255,255,255!important;--gm3-sys-color-on-tertiary-fixed:#ffffff!important;--gm3-sys-color-on-tertiary-fixed-rgb:255,255,255!important;--gm3-sys-color-on-tertiary-fixed-variant:#e8dcff!important;--gm3-sys-color-on-tertiary-fixed-variant-rgb:232,220,255!important;--gm3-sys-color-outline:#610089!important;--gm3-sys-color-outline-rgb:97,0,137!important;--gm3-sys-color-outline-variant:#2a0040!important;--gm3-sys-color-outline-variant-rgb:42,0,64!important;--gm3-sys-color-primary:#c8a2ff!important;--gm3-sys-color-primary-rgb:200,162,255!important;--gm3-sys-color-primary-container:#610089!important;--gm3-sys-color-primary-container-rgb:97,0,137!important;--gm3-sys-color-primary-fixed:#2a003b!important;--gm3-sys-color-primary-fixed-rgb:42,0,59!important;--gm3-sys-color-primary-fixed-dim:#610089!important;--gm3-sys-color-primary-fixed-dim-rgb:97,0,137!important;--gm3-sys-color-scrim:#000000!important;--gm3-sys-color-scrim-rgb:0,0,0!important;--gm3-sys-color-secondary:#c8a2ff!important;--gm3-sys-color-secondary-rgb:200,162,255!important;--gm3-sys-color-secondary-container:#1a0026!important;--gm3-sys-color-secondary-container-rgb:26,0,38!important;--gm3-sys-color-secondary-fixed:#2a003b!important;--gm3-sys-color-secondary-fixed-rgb:42,0,59!important;--gm3-sys-color-secondary-fixed-dim:#610089!important;--gm3-sys-color-secondary-fixed-dim-rgb:97,0,137!important;--gm3-sys-color-shadow:#000000!important;--gm3-sys-color-shadow-rgb:0,0,0!important;--gm3-sys-color-surface:#000000!important;--gm3-sys-color-surface-rgb:0,0,0!important;--gm3-sys-color-surface-bright:#0d0d0d!important;--gm3-sys-color-surface-bright-rgb:13,13,13!important;--gm3-sys-color-surface-container:#000000!important;--gm3-sys-color-surface-container-rgb:0,0,0!important;--gm3-sys-color-surface-container-high:#0a0a0a!important;--gm3-sys-color-surface-container-high-rgb:10,10,10!important;--gm3-sys-color-surface-container-highest:#111111!important;--gm3-sys-color-surface-container-highest-rgb:17,17,17!important;--gm3-sys-color-surface-container-low:#000000!important;--gm3-sys-color-surface-container-low-rgb:0,0,0!important;--gm3-sys-color-surface-container-lowest:#000000!important;--gm3-sys-color-surface-container-lowest-rgb:0,0,0!important;--gm3-sys-color-surface-dim:#000000!important;--gm3-sys-color-surface-dim-rgb:0,0,0!important;--gm3-sys-color-surface-tint:#610089!important;--gm3-sys-color-surface-tint-rgb:97,0,137!important;--gm3-sys-color-surface-variant:#0a0a0a!important;--gm3-sys-color-surface-variant-rgb:10,10,10!important;--gm3-sys-color-tertiary:#c8a2ff!important;--gm3-sys-color-tertiary-rgb:200,162,255!important;--gm3-sys-color-tertiary-container:#2a003b!important;--gm3-sys-color-tertiary-container-rgb:42,0,59!important;--gm3-sys-color-tertiary-fixed:#2a003b!important;--gm3-sys-color-tertiary-fixed-rgb:42,0,59!important;--gm3-sys-color-tertiary-fixed-dim:#610089!important;--gm3-sys-color-tertiary-fixed-dim-rgb:97,0,137!important;}
+
+/* ===== Gemini (panneau de droite) ===== */
+.aHij0b-aLs .yQvuKd { background-color: #2a003b !important; color: #ffffff !important; } /* mes questions */
+.aHij0b-aLs .yQvuKd * { color: inherit !important; }
+.aHij0b-aLs .zVSmpd { background-color: #0a0010 !important; border: 2px solid #610089 !important; background-clip: padding-box !important; }
+.aHij0b-aLs .zVSmpd:focus-within { border-color: #c8a2ff !important; }
+.aHij0b-aLs [contenteditable="true"]::before { color: #9d8cb5 !important; } /* « Demander à Gemini » lisible */
+.aHij0b-aLs :is([role="list"], [role="listbox"], [role="menu"]) { border-radius: 14px !important; background-clip: padding-box !important; }
+.aHij0b-aLs .W37tNe { display: none !important; } /* « Gemini dans Workspace peut faire des erreurs » */
+
+/* ===== Petit « × » des libellés dans un mail ===== */
+.hO[role="button"] { background-color: #2a003b !important; }
+.hO[role="button"]:hover { background-color: #ff3b3b !important; }
+
+/* ===== Paramètres : onglets, aperçu du style de texte, listes déroulantes ===== */
+.f1 { background-color: transparent !important; }
+.f1 .f0 { color: #c8a2ff !important; }
+.f1 .f0[aria-selected="true"] { color: #ffffff !important; }
+.f1 .f0:hover { color: #ff3b3b !important; }
+.qK, .qL { background-color: #0a0010 !important; color: #e8e8e8 !important; }
+.qK .J-Z[role="toolbar"] { background-color: #14001e !important; }
+select { color-scheme: dark !important; background-color: #0a0010 !important; color: #ffffff !important; border: 2px solid #2a003b !important; border-radius: 8px !important; background-clip: padding-box !important; }
 }
 
 /*@@ youtube @@*/
@@ -2737,6 +2763,8 @@ div.aeU{display:none!important}
 }
 @-moz-document domain("developer.mozilla.org") {
 footer.page-footer,.page-footer{display:none!important}
+/* sommaire et menu : élément en cours en violet (plus de bleu) */
+a[aria-current]:not([aria-current="false"]),a[aria-current]:not([aria-current="false"]) *,details ol li>em{background-color:#2a003b!important;color:#fff!important}
 }
 @-moz-document domain("docs.python.org") {
 div.footer{display:none!important}
@@ -2856,6 +2884,8 @@ table tbody tr:hover,table tbody tr:hover>td{background-color:#14001e!important}
 .s-sidebarwidget,.s-notice,.s-pagination--item,.s-card{border-color:#610089!important}
 .s-btn__filled,.s-btn__primary,.s-topbar--item__unset.s-btn{background:#610089!important;color:#fff!important;border-color:#610089!important}
 .s-btn__filled:hover,.s-btn__primary:hover{background:#ff3b3b!important;border-color:#ff3b3b!important;box-shadow:3px 3px 0 #610089!important}
+/* pastilles « nouveau » du menu de gauche : violet au lieu du bleu-violet cerclé de blanc */
+.bg-purple-400.baw3{background-color:#610089!important;border:2px solid #2a003b!important;background-clip:padding-box!important}
 }
 
 /*@@ wolfram-fix @@*/
@@ -3325,8 +3355,15 @@ div[class*="_html_code__block_"],div[class*="_input_output__table_"],div[class*=
 @-moz-document domain("chatgpt.com"), domain("chat.openai.com") {
 html,html body{--x17e9krr:#000!important;--x1mzx15b:#0a0010!important;--xgmhk9z:#0a0010!important;--x7fwydj:#2a003b!important;--x1w9ml1o:#2a003b!important;--x1h28xhg:#2a003b80!important;--x1em6fjx:#2a003bcc!important;--x3od0vr:#2a003bcc!important;--x8cb1zg:#2a003ba6!important;--x130vrix:#610089!important;--x1hqqq8t:#610089!important;--x1fwcpeh:#7a00ad!important;--x17gks54:#2a003b!important;--xnz65mj:#2a003b!important;--xiq9l3n:#610089!important;--x1vdwxib:#2a003b!important;--main-surface-primary:#000!important;--main-surface-secondary:#0a0010!important;--main-surface-tertiary:#14001e!important;--sidebar-surface-primary:#000!important;--sidebar-surface-secondary:#0a0010!important;--message-surface:#0a0010!important;--composer-surface-primary:#000!important;--bg-primary:#000!important;--bg-secondary:#0a0010!important;--bg-tertiary:#14001e!important;--bg-elevated-primary:#0a0010!important;--bg-elevated-secondary:#0a0010!important;--border-light:#2a003b!important;--border-medium:#2a003b!important;--border-default:#2a003b!important;background:#000!important}
 .x11f8pvu,.x16hnadc,.xmkeg23,.x1pqu4bb.x1pqu4bb{border-width:2px!important;background-clip:padding-box!important}
-html body form{background-color:#000!important;border:2px solid #610089!important;background-clip:padding-box!important;box-shadow:none!important}
+html body form{background-color:#000!important;border:2px solid #610089!important;border-radius:16px!important;background-clip:padding-box!important;box-shadow:none!important}
 html body form:focus-within{border-color:#ff3b3b!important}
+/* champ de message : contour arrondi (violet, rouge quand on écrit) au lieu du cadre carré du formulaire */
+html body form:has([data-composer-body],[class*="ComposerLayoutBody"]){background-color:transparent!important;border:0!important;box-shadow:none!important}
+html body form :is([data-composer-body],[class*="ComposerLayoutBody"]):not(#z#z){background-color:#000!important;border-radius:28px!important;outline:2px solid #610089!important;outline-offset:-2px!important;box-shadow:none!important}
+html body form [class*="ComposerLayoutRoot"]:not(#z#z){box-shadow:none!important}
+html body form:focus-within :is([data-composer-body],[class*="ComposerLayoutBody"]):not(#z#z){outline-color:#ff3b3b!important}
+/* « ChatGPT peut faire des erreurs. Vérifiez les informations importantes. » */
+.sticky.bottom-0>.text-center.text-xs.select-none{display:none!important}
 .x1bszf63{background-color:#610089!important;color:#fff!important}
 .x1bszf63:hover{background-color:#ff3b3b!important;box-shadow:3px 3px 0 #610089!important}
 a[href*="help.openai.com"],p:has(> span > a[href*="openai.com/terms"]){display:none!important}

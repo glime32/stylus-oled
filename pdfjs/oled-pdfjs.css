@@ -1,0 +1,93 @@
+/* oled-pdfjs.css — calque OLED violet pour le lecteur PDF.js (extension « PDF Viewer » non empaquetée).
+   Chargé juste après viewer.css, mis à jour tout seul depuis github.com/glime32/stylus-oled (pdfjs/install.sh). */
+
+/* ---------- Icônes, textes et champs lisibles ---------- */
+:root,
+:root:where(:not(.is-light)),
+#outerContainer {
+  --toolbar-icon-opacity: 1 !important;
+  --doorhanger-icon-opacity: 1 !important;
+  --toolbar-icon-bg-color: #c8a2ff !important;
+  --toolbar-icon-hover-bg-color: #ff3b3b !important;
+  --button-hover-color: #14001e !important;
+  --button-hover-text-color: #ffffff !important;
+  --toggled-btn-color: #ffffff !important;
+  --toggled-btn-text-color: #ffffff !important;
+  --toggled-btn-bg-color: #2a003b !important;
+  --toggled-hover-active-btn-color: #610089 !important;
+  --main-color: #e8dcff !important;
+  --field-color: #ffffff !important;
+  --field-bg-color: #0a0010 !important;
+  --field-border-color: #610089 !important;
+  --dropdown-btn-bg-color: #0a0010 !important;
+  --doorhanger-bg-color: #0a0010 !important;
+  --doorhanger-border-color: #610089 !important;
+  --doorhanger-hover-color: #ffffff !important;
+  --doorhanger-separator-color: #2a003b !important;
+  --separator-color: #2a003b !important;
+  --progressBar-color: #c8a2ff !important;
+  --progressBar-bg-color: #14001e !important;
+  --progressBar-blend-color: #610089 !important;
+}
+
+/* icônes (masques) : lilas, rouge au survol, blanc quand l'outil est actif */
+#outerContainer .toolbarButton::before,
+#outerContainer .dropdownToolbarButton::after {
+  background-color: #c8a2ff !important;
+  opacity: 1 !important;
+}
+#outerContainer .toolbarButton:is(:hover, :focus-visible)::before,
+#outerContainer .dropdownToolbarButton:is(:hover, :focus-visible, :active)::after {
+  background-color: #ff3b3b !important;
+}
+#outerContainer .toolbarButton.toggled::before {
+  background-color: #ffffff !important;
+}
+#outerContainer .toolbarButton:is([disabled], [disabled="disabled"])::before {
+  opacity: 0.45 !important;
+}
+#outerContainer :is(.toolbarLabel, #numPages) {
+  color: #e8dcff !important;
+}
+#outerContainer .toolbarField {
+  border: 2px solid #610089 !important;
+  border-radius: 8px !important;
+  background-clip: padding-box !important;
+}
+#outerContainer .toolbarField:focus {
+  border-color: #c8a2ff !important;
+}
+
+/* ---------- Barre du haut : cachée, s'ouvre dès que la souris approche du haut ---------- */
+#outerContainer #toolbarContainer {
+  position: fixed !important;
+  inset: 0 0 auto 0 !important;
+  z-index: 9999 !important;
+  background-color: #000000 !important;
+  box-shadow: none !important;
+  transform: translateY(-100%) !important;
+  transition: transform 0.18s ease 0.35s !important; /* se cache 0,35 s après la sortie */
+}
+
+/* zone de survol invisible de 48 px sous la barre + fine ligne violette bien visible */
+#outerContainer #toolbarContainer::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 100% 0 auto 0 !important;
+  height: 48px !important;
+  pointer-events: auto !important;
+  background: linear-gradient(90deg, transparent, #610089 22%, #c8a2ff 50%, #610089 78%, transparent) top / 100% 3px no-repeat !important;
+}
+
+/* barre ouverte : au survol, au clavier, ou tant qu'un menu / la recherche / un outil est ouvert */
+#outerContainer #toolbarContainer:is(:hover, :focus-within),
+#outerContainer #toolbarContainer:has([aria-expanded="true"], .doorHanger:not(.hidden), .doorHangerRight:not(.hidden)),
+#outerContainer:has(#secondaryToolbar:not(.hidden), #findbar:not(.hidden), .editorParamsToolbar:not(.hidden)) #toolbarContainer {
+  transform: none !important;
+  transition-delay: 0s !important;
+}
+/* barre ouverte : la zone sous la barre rétrécit (moins de clics bloqués sur la page) */
+#outerContainer #toolbarContainer:is(:hover, :focus-within)::after {
+  height: 24px !important;
+  background-size: 100% 2px !important;
+}

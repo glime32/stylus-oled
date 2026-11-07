@@ -8,6 +8,15 @@ Mon thème noir OLED + violet pour à peu près tous les sites que j'utilise, et
 
 Palette : fond `#000000` (pixels éteints sur un écran OLED), violet `#610089`, accent `#c8a2ff`, rouge `#ff3b3b` pour le survol et ce qui est « dangereux ».
 
+<table>
+<tr><td><img src="docs/duckduckgo.jpg" alt="DuckDuckGo"></td><td><img src="docs/github.jpg" alt="GitHub"></td></tr>
+<tr><td align="center"><sub>DuckDuckGo</sub></td><td align="center"><sub>GitHub</sub></td></tr>
+<tr><td><img src="docs/wikipedia.jpg" alt="Wikipédia"></td><td><img src="docs/archwiki.jpg" alt="ArchWiki"></td></tr>
+<tr><td align="center"><sub>Wikipédia</sub></td><td align="center"><sub>ArchWiki</sub></td></tr>
+<tr><td><img src="docs/stackoverflow.jpg" alt="Stack Overflow"></td><td><img src="docs/mdn.jpg" alt="MDN"></td></tr>
+<tr><td align="center"><sub>Stack Overflow</sub></td><td align="center"><sub>MDN</sub></td></tr>
+</table>
+
 ## Contenu
 
 | Fichier | Extension | Installer |
@@ -15,6 +24,7 @@ Palette : fond `#000000` (pixels éteints sur un écran OLED), violet `#610089`,
 | `oled-violet.user.css` | [Stylus](https://github.com/openstyles/stylus) | [installer](https://raw.githubusercontent.com/glime32/stylus-oled/main/oled-violet.user.css) |
 | `youtube-vo.user.js` | Violentmonkey / Tampermonkey | [installer](https://raw.githubusercontent.com/glime32/stylus-oled/main/youtube-vo.user.js) |
 | `google-messages-recherche.user.js` | Violentmonkey / Tampermonkey | [installer](https://raw.githubusercontent.com/glime32/stylus-oled/main/google-messages-recherche.user.js) |
+| `pdfjs/oled-pdfjs.css` | PDF.js (extension *PDF Viewer* non empaquetée) | une commande, voir [plus bas](#pdfjs--lecteur-pdf) |
 
 Un clic sur « installer » ouvre directement la page d'installation de l'extension. Les fichiers ont un `@updateURL` qui pointe ici, donc chaque modification poussée sur `main` arrive toute seule dans le navigateur.
 
@@ -33,7 +43,7 @@ Quelques règles que je garde partout :
 - les bordures sur les éléments arrondis font **2 px avec `background-clip: padding-box`** (en 1 px, les coins arrondis paraissent plus fins que le reste) ;
 - les liens Aide / Confidentialité / Conditions et les pieds de page inutiles sont cachés ;
 - les messages non lus (Gmail, Discord, WhatsApp, Instagram) ressortent en violet avec une barre à gauche ;
-- les sites sans mode sombre (Amazon, AliExpress, GeoGebra) passent par une inversion de couleurs qui épargne les images.
+- les sites sans mode sombre ont un vrai thème sombre plutôt qu'une inversion de couleurs (seuls les graphiques de Desmos et GeoGebra restent inversés).
 
 Fait et testé sur [Helium](https://github.com/imputnet/helium) (Chromium) sous CachyOS / KDE Plasma. Doit marcher sur n'importe quel navigateur avec Stylus.
 
@@ -46,6 +56,19 @@ Contrepartie : la traduction automatique des sous-titres ne marche plus du tout.
 ## google-messages-recherche.user.js
 
 Ajoute une barre de recherche dans [Google Messages Web](https://messages.google.com/web), comme dans l'appli Android : filtre les conversations par nom ou par dernier message.
+
+## pdfjs/ — lecteur PDF
+
+Stylus ne peut pas toucher aux pages `chrome-extension://`, donc le lecteur PDF (copie non empaquetée de l'extension *PDF Viewer*, PDF.js) a son propre calque : `oled-pdfjs.css`, chargé juste après `viewer.css`.
+
+- icônes lilas bien visibles (rouges au survol, blanches quand un outil est actif) ;
+- la barre du haut se cache et descend dès que la souris approche du haut de la page (zone de 48 px), avec une fine ligne violette qui montre où elle est ; elle reste ouverte tant qu'un menu, la recherche ou un outil est ouvert.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/glime32/stylus-oled/main/pdfjs/install.sh | bash
+```
+
+Le script trouve le dossier du lecteur (`~/pdfjs-custom` par défaut, ou `PDFJS_DIR=...`), ajoute le CSS et un timer systemd utilisateur qui le met à jour toutes les heures. Recharge ensuite les onglets PDF.
 
 ## Voir aussi
 
