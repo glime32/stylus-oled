@@ -9,6 +9,45 @@
 ==/UserStyle== */
 
 
+/*@@ global — tous les sites @@*/
+/* Curseur de texte fixe, sans clignotement (partout, même hors http) */
+* {
+  caret-animation: manual !important;
+}
+
+/* Retouches sans risque pour toutes les pages web et les fichiers locaux */
+@-moz-document url-prefix("http"), url-prefix("file:") {
+/* ===== Thème général OLED violet : retouches sans risque pour tous les sites ===== */
+
+  /* Texte sélectionné */
+  ::selection { background: #610089 !important; color: #ffffff !important; }
+
+  /* Cases à cocher, boutons radio, curseurs et barres de progression */
+  :where(:root) { accent-color: #610089; }
+
+  /* Curseur de texte rouge, visible sur les pages claires comme sombres */
+  :where(:root) { caret-color: #ff3b3b; }
+
+  /* Contour violet quand tu navigues au clavier (touche Tab) */
+  :where(:focus-visible) { outline-color: #610089; }
+
+  /* Barre de défilement de la page en violet, sans toucher à celles des sites */
+  :where(html) { scrollbar-color: #610089 transparent; }
+  :where(body) { scrollbar-color: auto; }
+
+  /* Pages brutes du navigateur (image seule, vidéo seule, fichier texte) en noir OLED */
+  html:has(> body > img:only-child),
+  html:has(> body > img:only-child) > body,
+  html:has(> body > video:only-child),
+  html:has(> body > video:only-child) > body,
+  html:has(> body > pre:first-child[style]),
+  html:has(> body > pre:first-child[style]) > body {
+    background: #000000 !important;
+  }
+  html:has(> body > pre:first-child[style]) > body > pre { color: #e6e6e6 !important; }
+}
+
+
 /*@@ soundcloud oled @@*/
 @-moz-document domain("soundcloud.com") {
 /* 1. Force le fond en noir OLED pur */
@@ -89,11 +128,6 @@
     border: 2px solid #610089 !important;
     opacity: 1 !important; 
   }
-}
-
-/*@@ tout curseur manuel @@*/
-* {
-  caret-animation: manual !important;
 }
 
 /*@@ claude oled @@*/
@@ -1481,38 +1515,6 @@ yt-sheet-view-model, .ytSheetViewModelContextual {
   .df-search-field { box-shadow: inset 0 0 0 2px #610089 !important; }
   .df-new-circle { background: #610089 !important; }
   .df-new-circle, .df-new-circle * { color: #ffffff !important; }
-}
-
-/*@@ iverall @@*/
-@-moz-document url-prefix("http"), url-prefix("file:") {
-/* ===== Thème général OLED violet : retouches sans risque pour tous les sites ===== */
-
-  /* Texte sélectionné */
-  ::selection { background: #610089 !important; color: #ffffff !important; }
-
-  /* Cases à cocher, boutons radio, curseurs et barres de progression */
-  :where(:root) { accent-color: #610089; }
-
-  /* Curseur de texte rouge, visible sur les pages claires comme sombres */
-  :where(:root) { caret-color: #ff3b3b; }
-
-  /* Contour violet quand tu navigues au clavier (touche Tab) */
-  :where(:focus-visible) { outline-color: #610089; }
-
-  /* Barre de défilement de la page en violet, sans toucher à celles des sites */
-  :where(html) { scrollbar-color: #610089 transparent; }
-  :where(body) { scrollbar-color: auto; }
-
-  /* Pages brutes du navigateur (image seule, vidéo seule, fichier texte) en noir OLED */
-  html:has(> body > img:only-child),
-  html:has(> body > img:only-child) > body,
-  html:has(> body > video:only-child),
-  html:has(> body > video:only-child) > body,
-  html:has(> body > pre:first-child[style]),
-  html:has(> body > pre:first-child[style]) > body {
-    background: #000000 !important;
-  }
-  html:has(> body > pre:first-child[style]) > body > pre { color: #e6e6e6 !important; }
 }
 
 /*@@ plein de site @@*/
