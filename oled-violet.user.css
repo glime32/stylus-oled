@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           OLED violet (auto)
 @namespace      glime32.oled-violet
-@version        1.3.0
+@version        1.3.1
 @description    Tous les thèmes OLED noir #000 + violet #610089, mis à jour tout seuls
 @author         glime32
 @license        MIT
@@ -957,6 +957,19 @@ html body article button[aria-controls^="contextMenu-"][aria-expanded="true"] * 
 li.related-searches__item{background:var(--ov-noir)!important;border:2px solid var(--ov-violet)!important;background-clip:padding-box!important}
 li.related-searches__item:hover{border-color:var(--ov-rouge)!important}
 li.nav-menu__item:has(>a[href="/duckduckgo-help-pages"]),li.nav-menu__item:has(>a[href="/terms"]){display:none!important}
+
+/* ---- accueil 2026 : nouvelle barre « Rechercher / Duck.ai » et nouveaux boutons ---- */
+/* DDG a changé l'accueil : classes « module__xxxxxx__nom » (le milieu change à chaque mise à jour), variables illisibles. On vise la fin du nom. */
+html body #searchbox_homepage [class*="__queryWrap"]{border:2px solid var(--ov-violet)!important;border-radius:24px!important;background-color:var(--ov-noir)!important;box-shadow:none!important;background-clip:padding-box!important}
+html body #searchbox_homepage:focus-within{box-shadow:none!important}
+html body #searchbox_homepage:focus-within [class*="__queryWrap"]{border-color:var(--ov-rouge)!important;box-shadow:0 0 0 2px var(--ov-rouge)!important}
+html body button[class*="search-toggle-box-module"][class*="__chip"]{border:2px solid var(--ov-violet)!important;background-color:transparent!important;color:var(--ov-blanc)!important;box-shadow:none!important;background-clip:padding-box!important}
+html body button[class*="search-toggle-box-module"][class*="__chipSelected"]{background-color:var(--ov-violet)!important}
+html body button[class*="search-toggle-box-module"][class*="__chip"] *{background-color:transparent!important}
+html body button[class*="search-toggle-box-module"][class*="__chip"]:hover{border-color:var(--ov-rouge)!important}
+html body :is(button,a)[class*="__primary-solid"]{background-color:var(--ov-violet)!important;border:2px solid var(--ov-violet)!important;color:var(--ov-blanc)!important;background-clip:padding-box!important}
+html body :is(button,a)[class*="__secondary-solid"],html body a[class*="duckai-button"][class*="__root"]{background-color:var(--ov-noir)!important;border:2px solid var(--ov-violet)!important;color:var(--ov-blanc)!important;background-clip:padding-box!important}
+html body :is(button,a):is([class*="__primary-solid"],[class*="__secondary-solid"]):hover,html body a[class*="duckai-button"][class*="__root"]:hover{background-color:var(--ov-rouge)!important;border-color:var(--ov-rouge)!important;color:var(--ov-blanc)!important;box-shadow:3px 3px 0 var(--ov-violet)!important}
 }
 
 /*@@ Gmail @@*/
