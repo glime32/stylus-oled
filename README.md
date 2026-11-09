@@ -4,6 +4,8 @@
 
 <p align="center"><a href="README.fr.md">🇫🇷 Version française</a></p>
 
+> **Superseded by [stylus-magique](https://github.com/glime32/stylus-magique).** This repo is no longer updated.
+
 **My OLED black + purple theme for pretty much every site I use**, plus a few userscripts. Everything updates itself from this repo.
 
 Palette: `#000000` background (pixels fully off on OLED screens), one single purple `#610089` for buttons, 2 px borders and highlights (darker shades `#2a003b` / `#14001e` for unread, selected and hover backgrounds), white text and icons, links underlined in `#610089`, red `#ff3b3b` for hover and "danger".

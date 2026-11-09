@@ -4,6 +4,8 @@
 
 <p align="center"><a href="README.md">🇬🇧 English version</a></p>
 
+> **Remplacé par [stylus-magique](https://github.com/glime32/stylus-magique).** Ce dépôt n'est plus mis à jour.
+
 Mon thème noir OLED + violet pour à peu près tous les sites que j'utilise, et quelques userscripts qui vont avec. Tout se met à jour tout seul depuis ce dépôt.
 
 Palette : fond `#000000` (pixels éteints sur un écran OLED), un seul violet `#610089` pour les boutons, les bordures 2 px et ce qui est mis en avant (ses versions foncées `#2a003b` / `#14001e` pour les non lus, la sélection et le survol), texte et icônes blancs, liens soulignés en `#610089`, rouge `#ff3b3b` pour le survol et ce qui est « dangereux ».
